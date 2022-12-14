@@ -1,0 +1,15 @@
+version: '3'
+services:
+
+    imgproxy:
+        image: darthsim/imgproxy
+        restart: always
+        env_file:
+            - .env
+
+    imgproxy_cache: 
+        image: nginx:latest
+        restart: always
+        volumes:
+            - ./nginx.conf:/etc/nginx/nginx.conf
+            - ./data/thumbnail-cache/:/cache/
